@@ -8,4 +8,5 @@ mkdir -p -m 755 /etc/apt/keyrings &&
     debuild -us -uc -tc -b &&
     cd .. &&
     dpkg -i gasket-dkms_*.deb &&
+    apt remove devscripts dh-dkms
     apt update && apt upgrade
