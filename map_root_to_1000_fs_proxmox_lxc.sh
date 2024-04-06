@@ -1,4 +1,4 @@
-echo "Restoring $1.conf file" &&
+echo "Restoring $HOME/$1.conf file" &&
     cp $1.conf /etc/pve/nodes/$HOSTNAME/lxc/$1.conf &&
     pct reboot $1 &&
     pct mount $1 &&
