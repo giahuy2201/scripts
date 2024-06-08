@@ -5,6 +5,7 @@ mkdir -p -m 755 /etc/apt/keyrings &&
     apt install -y libedgetpu1-std git devscripts dh-dkms &&
     git clone https://github.com/google/gasket-driver.git $HOME/gasket-driver &&
     cd $HOME/gasket-driver &&
+    git pull &&
     debuild -us -uc -tc -b &&
     cd .. &&
     dpkg -i gasket-dkms_*.deb &&
