@@ -12,15 +12,21 @@ Options:
 -r  Apply to subsequent folders\
 """.format(argv[0]))
 
-def rlink(src,dst):
+def rlink(src,dst,recursive=True):
     for f in os.scandir(src):
         if f.is_file() and not f.is_symlink():
             dst_f = os.path.join(dst,f.name)
             os.link(f,dst_f)
             print(dst_f)
+        elif f.is_dir() and recursive:
+            rlink(src+'/'+f.name,dst,True)
 
-src = argv[1]
-dst = argv[2]
+if argv[1] == '-r':
+    src = argv[2]
+    dst = argv[3]
+else:
+    src = argv[1]
+    dst = argv[2]
 
 try:
     os.mkdir(dst)
