@@ -19,7 +19,9 @@ def rlink(src,dst,recursive=True):
             os.link(f,dst_f)
             print(dst_f)
         elif f.is_dir() and recursive:
-            rlink(src+'/'+f.name,dst,True)
+            dst_sub = dst+'/'+f.name
+            os.mkdir(dst_sub)
+            rlink(src+'/'+f.name,dst_sub,True)
 
 if argv[1] == '-r':
     src = argv[2]
